@@ -41,7 +41,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({storage})
 
-function updateDB(var file){
+function updateDB(file){
     fs.readdir(__dirname+'/public/uploads', function(err, files){
         pics = files;
     })
