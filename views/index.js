@@ -9,8 +9,8 @@ function refreshPics(){
         
         console.log(data);
         for(var i in data){
-            console.log(data[i]);
-            pics = pics+'<li><img src='+data[i].url+'</img></li>';
+            console.log(data[i].url);
+            pics = pics+'<li><img src=\''+data[i].url+'\'</img></li>';
             
         }
         
