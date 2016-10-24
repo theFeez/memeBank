@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.static(__dirname ));
 app.use(express.static(__dirname +'/views'));
 
-var storage = multer.diskStorage({
+/*var storage = multer.diskStorage({
   destination: function (req, file, cb) {
       if(path.extname(file.originalname)==='.jpg'||path.extname(file.originalname)==='.gif'||path.extname(file.originalname)==='.bmp'||path.extname(file.originalname)==='.png')
           {
@@ -39,7 +39,7 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({storage})
+var upload = multer({storage})*/
 
 function updateDB(file){
    
@@ -48,7 +48,7 @@ function updateDB(file){
        MongoClient.connect(url, function(err, db) {
             assert.equal(null, err);
             console.log("Connected successfully to server");
-            db.collection('pics').insert({'name':file.filename,'url':result.url})
+            db.collection('pics').insert({'name':file.name,'url':result.url})
 
             db.close();
         });
@@ -66,7 +66,7 @@ app.get('/',function(req, res){
 
 app.post('/upload',upload.single('image'),function(req,res){
     console.log('posted');
-    updateDB(req.file);
+    updateDB(req.files);
     res.redirect('https://memebank.herokuapp.com/');
     res.end();
     
