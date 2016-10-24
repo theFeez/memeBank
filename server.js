@@ -36,7 +36,7 @@ var upload = multer({storage})
 
 function updateDB(file){
    
-   cloudinary.uploader.upload(file, function(result){
+   cloudinary.uploader.upload(file.path, function(result){
        console.log(result);
        MongoClient.connect(url, function(err, db) {
             assert.equal(null, err);
