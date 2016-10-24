@@ -77,4 +77,5 @@ app.get('/loadPics',function(req,res){
 
 app.listen(9001, function(){
   console.log('listening on :'+this.address().address+':'+this.address().port);
+    console.log('fuk heroku');
 });
