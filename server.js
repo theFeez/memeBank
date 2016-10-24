@@ -7,8 +7,12 @@ var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
 var url = 'mongodb://theFeez:neonSlick@ds031157.mlab.com:31157/heroku_j9vbm98c';
 var pics;
+var cors = require('cors');
 
 
+
+
+app.use(cors());
 app.use(express.static(__dirname ));
 app.use(express.static(__dirname +'/views'));
 
