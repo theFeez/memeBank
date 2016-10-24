@@ -60,7 +60,7 @@ app.get('/',function(req, res){
 app.post('/upload',upload.single('image'),function(req,res){
     console.log('posted');
     updateDB();
-    res.redirect(' https://memebank.herokuapp.com/');
+    res.redirect('https://memebank.herokuapp.com/');
     res.end();
     
     
