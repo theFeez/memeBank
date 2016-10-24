@@ -64,7 +64,7 @@ app.get('/',function(req, res){
     console.log('routed bitch');
 });
 
-app.post('/upload',upload.single('image'),function(req,res){
+app.post('/upload',function(req,res){
     console.log('posted');
     updateDB(req.files);
     res.redirect('https://memebank.herokuapp.com/');
