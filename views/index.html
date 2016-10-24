@@ -17,8 +17,14 @@
   <input type="file" name="image"> 
   <input type="submit" value="Upload Image">
 </form>
+    <form action="/login" method="POST" enctype="multipart/form-data">
+  admin login:
+  <input type="text" name="user" placeholder='username'> 
+    <input type='text' name='pass' placeholder='password'>
+  <input type="submit" value="login">
+</form>
     <ul id='picList'>
-        <li><img src='https://memebank.herokuapp.com/public/uploads/bug.jpg'></li>
+       
     </ul>
 </body>
 </html>

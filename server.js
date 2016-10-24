@@ -79,6 +79,22 @@ app.get('/loadPics',function(req,res){
     
 });
 
+app.post('/delete',function(req,res){
+   console.log(req); 
+});
+
+app.post('/login',function(req,res){
+   if(req.user==='admin'&&req.pass==='getfucked'){
+       res.redirect('/admin');
+       res.end();
+   } 
+});
+
+app.get('/admin',function(req,res){
+    res.sendFile(__dirname+'/views/admin.html');
+    updateDB();
+})
+
 app.listen(process.env.PORT||500,function(){
   console.log('listening on :'+this.address().address+':'+this.address().port);
     console.log('fuk heroku');
