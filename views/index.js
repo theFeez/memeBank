@@ -9,7 +9,8 @@ function refreshPics(){
         
         console.log(data);
         for(var i in data){
-            pics = pics+'<li><img src=\'https://memebank.herokuapp.com/public/uploads/'+data[i]+'\'</img></li>';
+            console.log(data[i]);
+            pics = pics+'<li><img src='+data[i].url+'</img></li>';
             
         }
         
