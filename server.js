@@ -84,10 +84,15 @@ app.post('/delete',function(req,res){
 });
 
 app.post('/login',function(req,res){
+    console.log('got to login');
    if(req.user==='admin'&&req.pass==='getfucked'){
+       console.log('authorized');
        res.redirect('/admin');
        res.end();
    } 
+    else{
+        console.log('fuck you');
+    }
 });
 
 app.get('/admin',function(req,res){
