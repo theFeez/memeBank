@@ -56,7 +56,7 @@ app.get('/',function(req, res){
 app.post('/upload',upload.single('image'),function(req,res){
     console.log('posted');
     updateDB();
-    res.redirect('100.65.6.81:9001/');
+    res.redirect(' https://memebank.herokuapp.com/');
     res.end();
     
     
@@ -75,6 +75,6 @@ app.get('/loadPics',function(req,res){
     
 });
 
-app.listen(9001,'100.65.6.81', function(){
+app.listen(9001, function(){
   console.log('listening on :'+this.address().address+':'+this.address().port);
 });
