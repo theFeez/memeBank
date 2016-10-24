@@ -1,0 +1,25 @@
+{
+  "name": "memebox",
+  "version": "1.0.0",
+    "engines": {
+    "node": "4.4.2",
+    "npm":"2.15.0"
+  },
+  "description": "meme bank",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.0",
+    "multer": "^1.2.0",
+    "mongodb": "^2.2.11",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "memebank",
+    "start": "node server.js"
+  },
+  "author": "Zachary Feezor",
+  "license": "ISC"
+}
