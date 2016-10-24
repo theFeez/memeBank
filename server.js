@@ -5,7 +5,7 @@ var path = require('path');
 var multer = require('multer');
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
-var url = 'mongodb://<zachfeez\@knights.ucf.edu>:<Z23f7026>@ds031157.mlab.com:31157/heroku_j9vbm98c';
+var url = 'mongodb://<theFeez>:<neonSlick>@ds031157.mlab.com:31157/heroku_j9vbm98c';
 var pics;
 
 
