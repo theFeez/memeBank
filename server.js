@@ -85,9 +85,9 @@ app.post('/delete',function(req,res){
 
 app.post('/login',function(req,res){
     console.log('got to login');
-    console.log(req.user);
-    console.log(req.pass);
-   if(req.user==='admin'&&req.pass==='getfucked'){
+    console.log(req.body.user);
+    console.log(req.body.pass);
+   if(req.body.user==='admin'&&req.body.pass==='getfucked'){
        console.log('authorized');
        res.redirect('/admin');
        res.end();
