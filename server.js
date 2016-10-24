@@ -42,23 +42,16 @@ var storage = multer.diskStorage({
 var upload = multer({storage})
 
 function updateDB(file){
-    fs.readdir(__dirname+'/public/uploads', function(err, files){
-        pics = files;
-    })
-    for(var i in pics){
-        fs.unlink(__dirname+'/public/uploads/'+pics.filename,function(){
-            
-        });
-    }
+   
    cloudinary.uploader.upload(file, function(result){
        console.log(result);
        MongoClient.connect(url, function(err, db) {
-        assert.equal(null, err);
-        console.log("Connected successfully to server");
-        db.collection('pics').insert({'name':file.filename,'url':result.url})
-        
-        db.close();
-    });
+            assert.equal(null, err);
+            console.log("Connected successfully to server");
+            db.collection('pics').insert({'name':file.filename,'url':result.url})
+
+            db.close();
+        });
    
    });
     
