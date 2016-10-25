@@ -101,12 +101,12 @@ app.get('/',function(req, res){
 app.post('/upload',upload.single('image'),function(req,res){
     //console.log(req.file);
     if(req.file===undefined){
-        res.redirect('/');
+        res.redirect('/loadPics');
         res.end();  
     }
     else{
         updateDB(req.file);
-    res.redirect('/');
+    res.redirect('/loadPics');
     res.end();
     }
     
@@ -145,7 +145,7 @@ app.get('/url',function(req,res){
            
               if(response.data.outputs[0].data.concepts[0].name==='nsfw'){
                   console.log('nsfw');
-                  res.redirect('/');
+                  res.redirect('/loadPics');
                   
               }
               else{
@@ -156,7 +156,7 @@ app.get('/url',function(req,res){
                db.collection('pics').insert({'name':result.url,'url':result.url})
 
                db.close();
-               res.redirect('/');
+               res.redirect('/loadPics');
                 res.end();
             });
                   
