@@ -16,7 +16,7 @@ cloudinary.config({
 });
 var clarifai=require('clarifai');
 
-var app = new clarifai.App({'LVTIKzCDiEEqMRd-Ql88PkXMzJmCnvqAfAk_Fn8B'},{'1zSt2UIOKuYyudzcifHgX_b2DkGGyTfRqC_18Ls9'});
+var app = new clarifai.App('{LVTIKzCDiEEqMRd-Ql88PkXMzJmCnvqAfAk_Fn8B}','{1zSt2UIOKuYyudzcifHgX_b2DkGGyTfRqC_18Ls9}');
 
 
 
