@@ -14,9 +14,9 @@ cloudinary.config({
   api_key: '782969347656822', 
   api_secret: 'lP4Jq9dJiqy7AcwQa6oqHbt8lRM' 
 });
-var clarifai=require('clarifai');
+//var clarifai=require('clarifai');
 
-var app = new clarifai.App('LVTIKzCDiEEqMRd-Ql88PkXMzJmCnvqAfAk_Fn8B','1zSt2UIOKuYyudzcifHgX_b2DkGGyTfRqC_18Ls9');
+//var app = new clarifai.App('LVTIKzCDiEEqMRd-Ql88PkXMzJmCnvqAfAk_Fn8B','1zSt2UIOKuYyudzcifHgX_b2DkGGyTfRqC_18Ls9');
 
 
 
