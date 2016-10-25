@@ -14,6 +14,9 @@ cloudinary.config({
   api_key: '782969347656822', 
   api_secret: 'lP4Jq9dJiqy7AcwQa6oqHbt8lRM' 
 });
+var clarifai=require('clarifai');
+
+var app = new clarifai.App('LVTIKzCDiEEqMRd-Ql88PkXMzJmCnvqAfAk_Fn8B','1zSt2UIOKuYyudzcifHgX_b2DkGGyTfRqC_18Ls9');
 
 
 
@@ -35,16 +38,31 @@ var storage = multer.diskStorage({
 var upload = multer({storage})
 
 function updateDB(file){
+    var sfw = true;
    
    cloudinary.uploader.upload(file.path, function(result){
        console.log(result);
-       MongoClient.connect(url, function(err, db) {
-            assert.equal(null, err);
-            console.log("Connected successfully to server");
-            db.collection('pics').insert({'name':file.filename,'url':result.url})
+       app.models.predict(Clarifai.NSFW_MODEL, result.url).then(
+          function(response) {
+            console.log(response);
+          },
+          function(err) {
+            // there was an error
+              console.log('you fucked up');
+          }
+        );
+       
+       if(sfw){
+           MongoClient.connect(url, function(err, db) {
+               assert.equal(null, err);
+               console.log("Connected successfully to server");
+               db.collection('pics').insert({'name':file.filename,'url':result.url})
 
-            db.close();
-        });
+               db.close();
+            });
+       }
+       
+       
    
    });
     

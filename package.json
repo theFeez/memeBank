@@ -15,7 +15,8 @@
     "mongodb": "^2.2.11",
     "path": "^0.12.7",
       "cors":"^2.8.1",
-      "cloudinary":"^1.4.3"
+      "cloudinary":"^1.4.3",
+      "clarifai":"^2.0.10"
   },
   "devDependencies": {},
   "scripts": {
