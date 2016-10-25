@@ -37,7 +37,7 @@ console.log('wat');
 
 function refreshPics(){
     console.log('ran it');
-    $.get('memebank.herokuapp.com/loadPics',function(data){
+    $.get('/loadPics',function(data){
         
         console.log(data);
         for(var i in data){
