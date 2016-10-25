@@ -5,7 +5,18 @@ console.log('wat');
 
 function refreshPics(){
     console.log('ran it');
-    $.get('https://memebank.herokuapp.com/loadPics',function(data){
+    $.get('/gay',function(data){
+    console.log('yep');
+    console.log(data);  
+});
+    
+    function submitURL(){
+        console.log('kk');
+        $.get('/url',{'url':'http://i.imgur.com/Zb2Hanw.jpg'},function(data){
+            console.log(data.concepts[0].concepts);
+        });
+    }
+   /* $.get('/loadPics',function(data){
         
         console.log(data);
         for(var i in data){
@@ -17,11 +28,13 @@ function refreshPics(){
         $('#picList').html(pics);
         
             
-    });
+    });*/
     
     
     
 }
+
+
 
 refreshPics();
 

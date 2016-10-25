@@ -8,8 +8,7 @@
 
 <body>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src='index.js'></script>
+    
 
     
   <form action="/upload" method="POST" enctype="multipart/form-data">
@@ -17,14 +16,58 @@
   <input type="file" name="image"> 
   <input type="submit" value="Upload Image">
 </form>
-    <form action="/login" method="POST" enctype="multipart/form-data">
-  admin login:
-  <input type="text" name="user" placeholder='username'> 
-    <input type='text' name='pass' placeholder='password'>
-  <input type="submit" value="login">
+    <form action="" method="POST" enctype="multipart/form-data">
+  URL:
+ 
+    <input id='butt' type='text' name='imageURL' placeholder='Image URL'>
+  
 </form>
+    <button id='clickit' onclick="submitURL()">submit url</button>
     <ul id='picList'>
        
     </ul>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script >
+        var pics='';
+console.log('wat');
+        
+        var submitURL;
+
+
+
+function refreshPics(){
+    console.log('ran it');
+    $.get('memebank.herokuapp.com/loadPics',function(data){
+        
+        console.log(data);
+        for(var i in data){
+            console.log(data[i].url);
+            pics = pics+'<li><img src=\''+data[i].url+'\'</img></li>';
+            
+        }
+        
+        $('#picList').html(pics);
+        
+            
+    });  
+};
+    
+    submitURL = function(){
+        console.log('kk');
+        $.get('/url',{'url':$('#butt').val()},function(data){
+            
+            //console.log(data);
+        });
+    }
+    
+    
+    
+    
+
+
+
+
+refreshPics();
+    </script>
 </body>
 </html>
