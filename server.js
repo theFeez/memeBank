@@ -42,7 +42,7 @@ function updateDB(file){
    
    cloudinary.uploader.upload(file.path, function(result){
        console.log(result);
-       app.models.predict(Clarifai.NSFW_MODEL, result.url).then(
+       /*app.models.predict(Clarifai.NSFW_MODEL, result.url).then(
           function(response) {
             console.log(response);
           },
@@ -50,7 +50,7 @@ function updateDB(file){
             // there was an error
               console.log('you fucked up');
           }
-        );
+        );*/
        
        if(sfw){
            MongoClient.connect(url, function(err, db) {
