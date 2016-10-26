@@ -1,22 +1,13 @@
 var pics='';
 console.log('wat');
+        
+        var submitURL;
 
 
 
 function refreshPics(){
     console.log('ran it');
-    $.get('/gay',function(data){
-    console.log('yep');
-    console.log(data);  
-});
-    
-    function submitURL(){
-        console.log('kk');
-        $.get('/url',{'url':'http://i.imgur.com/Zb2Hanw.jpg'},function(data){
-            console.log(data.concepts[0].concepts);
-        });
-    }
-   /* $.get('/loadPics',function(data){
+    $.get('/loadPics',function(data){
         
         console.log(data);
         for(var i in data){
@@ -28,11 +19,21 @@ function refreshPics(){
         $('#picList').html(pics);
         
             
-    });*/
+    });  
+};
+    
+    submitURL = function(){
+        console.log('kk');
+        $.get('/url',{'url':$('#butt').val()},function(data){
+            
+            //console.log(data);
+        });
+    }
     
     
     
-}
+    
+
 
 
 
