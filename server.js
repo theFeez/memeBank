@@ -5,7 +5,7 @@ var path = require('path');
 var multer = require('multer');
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
-var url = 'mongodb://theFeez:neonSlick@ds031157.mlab.com:31157/heroku_j9vbm98c';
+var url = 'mongodb://localhost:27017/memeBox';
 var pics;
 var cors = require('cors');
 var cloudinary = require('cloudinary');
@@ -101,12 +101,12 @@ app.get('/',function(req, res){
 app.post('/upload',upload.single('image'),function(req,res){
     //console.log(req.file);
     if(req.file===undefined){
-        res.redirect('https://memebank.herokuapp.com/');
+        res.redirect('/');
         res.end();  
     }
     else{
         updateDB(req.file);
-    res.redirect('https://memebank.herokuapp.com/');
+    res.redirect('/');
         
     res.end();
     }
@@ -146,7 +146,7 @@ app.get('/url',function(req,res){
            
               if(response.data.outputs[0].data.concepts[0].name==='nsfw'){
                   console.log('nsfw');
-                  res.redirect('https://memebank.herokuapp.com/');
+                  res.redirect('/');
                   
               }
               else{
@@ -157,7 +157,7 @@ app.get('/url',function(req,res){
                db.collection('pics').insert({'name':result.url,'url':result.url})
 
                db.close();
-               res.redirect('https://memebank.herokuapp.com/');
+               res.redirect('/');
                 res.end();
             });
                   
