@@ -5,7 +5,7 @@ var path = require('path');
 var multer = require('multer');
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
-var url = 'mongodb://localhost:27017/memeBox';
+var url = 'mongodb://theFeez:mechboy1@ds031157.mlab.com:31157/heroku_j9vbm98c';
 var pics;
 var cors = require('cors');
 var cloudinary = require('cloudinary');
