@@ -41,7 +41,7 @@ var clarApp = new clarifai.App('LVTIKzCDiEEqMRd-Ql88PkXMzJmCnvqAfAk_Fn8B','1zSt2
 
 app.use(bodyParser.text());
 app.use(cors());
-app.use(express.static(__dirname ));
+//app.use(express.static(__dirname ));
 //app.use(express.static(__dirname +'/views/'));
 
 var storage = multer.diskStorage({
@@ -202,7 +202,7 @@ function isAuthenticated(req, res, next) {
         next();
 }   else if (!sess.user){
     console.log("User not authenticated!")
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, '/views/index.html'));
 }
 }
 
