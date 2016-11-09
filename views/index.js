@@ -2,6 +2,7 @@ var pics='';
 console.log('wat');
         
         var submitURL;
+var login;
 
 
 
@@ -31,7 +32,13 @@ function refreshPics(){
     }
     
     
-    
+    login = function(){
+        $.get('/login',{'username':$('#username').val(),'password':$('#password').val()},function(data){
+            console.log(data);
+            
+            window.location=(data);
+        });
+    };
     
 
 
