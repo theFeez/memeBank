@@ -1,5 +1,6 @@
 var loggedIn;
-
-$.get('/nuke',function(data){
+var nuke = function(){
+    $.get('/nuke',function(data){
   console.log(data);  
 })
+}
