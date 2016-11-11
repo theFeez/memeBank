@@ -42,7 +42,7 @@ var clarApp = new clarifai.App('LVTIKzCDiEEqMRd-Ql88PkXMzJmCnvqAfAk_Fn8B','1zSt2
 app.use(bodyParser.text());
 app.use(cors());
 //app.use(express.static(__dirname ));
-//app.use(express.static(__dirname +'/views/'));
+app.use(express.static(__dirname +'/views/'));
 
 var storage = multer.diskStorage({
   filename: function (req, file, cb) {
