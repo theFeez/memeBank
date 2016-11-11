@@ -8,56 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     
 <body>
-    <script>var pics='';
-console.log('wat');
-        
-        var submitURL;
-var login;
-
-
-
-function refreshPics(){
-    console.log('ran it');
-    $.get('/loadPics',function(data){
-        
-        console.log(data);
-        for(var i in data){
-            console.log(data[i].url);
-            pics = pics+'<li><img src=\''+data[i].url+'\'</img></li>';
-            
-        }
-        
-        $('#picList').html(pics);
-        
-            
-    });  
-};
-    
-    submitURL = function(){
-        console.log('kk');
-        $.get('/url',{'url':$('#butt').val()},function(data){
-            
-            //console.log(data);
-        });
-    }
-    
-    
-    login = function(){
-        $.get('/login',{'username':$('#username').val(),'password':$('#password').val()},function(data){
-            
-            console.log(data);
-            
-                window.location.replace('/admin');
-            
-            
-        });
-    };
-    
-
-
-
-
-refreshPics();</script>
+   
     
 
     
@@ -82,6 +33,6 @@ refreshPics();</script>
     <ul id='picList'>
        
     </ul>
-    
+     <script src='index.js'></script>
 </body>
 </html>

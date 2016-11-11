@@ -34,9 +34,14 @@ function refreshPics(){
     
     login = function(){
         $.get('/login',{'username':$('#username').val(),'password':$('#password').val()},function(data){
-            console.log(data);
             
-            window.location=(data);
+            console.log(data);
+            if(data){
+                window.location.replace('/admin');
+            }
+                
+            
+            
         });
     };
     
@@ -45,4 +50,3 @@ function refreshPics(){
 
 
 refreshPics();
-

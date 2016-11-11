@@ -202,7 +202,7 @@ function isAuthenticated(req, res, next) {
         next();
 }   else if (!sess.user){
     console.log("User not authenticated!")
-    res.sendFile(path.join(__dirname, '/views/index.html'));
+    res.redirect('/');
 }
 }
 
