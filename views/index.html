@@ -19,17 +19,20 @@
 </form>
     
   URL:
- 
+ <form action='/url' method='POST'>
     <input id='butt' type='text' name='imageURL' placeholder='Image URL'>
 
   
 
-    <button id='clickit' onclick="submitURL()">submit url</button>
+    <input type='submit' value='submitURL'>
+    </form>
     <br>
         Admin Login:
+    <form action='/login' method='POST'>
     <input id='username' type='username' name='user' placeholder='Admin username'>
     <input id='password' type='password' name='pass' placeholder='Admin Password'>
-    <button id='loginButton' onclick='login()'>login</button>
+    <input type='submit' value='login'>
+    </form>
     <ul id='picList'>
        
     </ul>

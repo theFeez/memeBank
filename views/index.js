@@ -39,9 +39,9 @@ function refreshPics(){
         $.get('/login',{'username':$('#username').val(),'password':$('#password').val()},function(data){
             
             console.log(data);
-            if(data){
+            /*if(data){
                 window.location.replace('/admin');
-            }
+            }*/
                 
             
             

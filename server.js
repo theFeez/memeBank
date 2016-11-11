@@ -38,8 +38,8 @@ cloudinary.config({
 var clarApp = new clarifai.App('LVTIKzCDiEEqMRd-Ql88PkXMzJmCnvqAfAk_Fn8B','1zSt2UIOKuYyudzcifHgX_b2DkGGyTfRqC_18Ls9');
 
 
-
-app.use(bodyParser.text());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 app.use(cors());
 //app.use(express.static(__dirname ));
 app.use(express.static(__dirname +'/views/'));
@@ -157,10 +157,11 @@ app.post('/delete',function(req,res){
   // console.log(req); 
 });
 
-app.get('/url',function(req,res){
-    console.log(req.query); 
+app.post('/url',function(req,res){
+    var image = req.body.imageURL
+    console.log(req.body.imageURL); 
     console.log('you fucked');
-    cloudinary.uploader.upload(req.query.url, function(result){
+    cloudinary.uploader.upload(image, function(result){
         clarApp.models.predict(Clarifai.NSFW_MODEL, result.url).then(
           function(response) {
             console.log('gucci');
@@ -180,7 +181,7 @@ app.get('/url',function(req,res){
 
                db.close();
               // res.redirect('/');
-                res.end();
+                res.redirect('/');
             });
                   
                   
@@ -213,7 +214,7 @@ function isAuthenticated(req, res, next) {
 }
 }
 
-app.get('/login', function(req,res){
+app.post('/login', function(req,res){
     sess = req.session;
     console.log("the session is:"+sess);
         MongoClient.connect(url,function(error,db){
@@ -221,24 +222,24 @@ app.get('/login', function(req,res){
             console.log("Connected successfully to MongoDB server");
             console.log("LOGIN INFORMATION: "+JSON.stringify(req.query));
             
-            db.collection('logins').findOne({username:req.query.username}, function(error,docs){
+            db.collection('logins').findOne({username:req.body.user}, function(error,docs){
                 if(docs !== null){
-                    if(docs.password == req.query.password){
+                    if(docs.password == req.body.pass){
                         console.log("Password correct!");
                         sess.user = docs.username;
                         console.log("session user name is "+sess.user)
                         // res.redirect("/")
-                        res.send(true)
+                        res.redirect('/admin');
                     } 
                     else {
                         console.log("Login failed! Bad password")
-                        res.send(false)
+                        res.redirect('/');
                     }
 
                 }
                 else{ 
                     console.log("Login failed! Bad Username");
-                    res.send(false);
+                    res.redirect('/');
                 }
 
             });
