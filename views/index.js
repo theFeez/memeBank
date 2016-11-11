@@ -26,10 +26,13 @@ function refreshPics(){
     submitURL = function(){
         console.log('kk');
         $.get('/url',{'url':$('#butt').val()},function(data){
-            
+            window.location.replace('/');
             //console.log(data);
         });
+        
     }
+    
+    
     
     
     login = function(){

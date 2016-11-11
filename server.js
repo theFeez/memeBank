@@ -15,7 +15,7 @@ var sfw;
 var session = require('express-session');
 app.use(session({
     secret: 'pinga',
-    cookie:{maxAge:30000}
+    cookie:{maxAge:600000}
     
 }));
 //var auth=require('http-a1uth');
@@ -46,7 +46,7 @@ app.use(express.static(__dirname +'/views/'));
 
 var storage = multer.diskStorage({
   filename: function (req, file, cb) {
-      if(path.extname(file.originalname)==='.jpg'||path.extname(file.originalname)==='.gif'||path.extname(file.originalname)==='.bmp'||path.extname(file.originalname)==='.png')
+      if(path.extname(file.originalname.toLowerCase())==='.jpg'||path.extname(file.originalname.toLowerCase())==='.gif'||path.extname(file.originalname.toLowerCase())==='.bmp'||path.extname(file.originalname.toLowerCase())==='.png')
           {
               cb(null, file.originalname)
           }
@@ -56,7 +56,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({storage})
 
-function updateDB(file){
+function updateDB(file,callback){
     
    
    cloudinary.uploader.upload(file.path, function(result){
@@ -68,27 +68,30 @@ function updateDB(file){
            
               if(response.data.outputs[0].data.concepts[0].name==='nsfw'){
                   console.log('nsfw');
-                  
+                  callback();
                   
               }
               else{
-                  console.log('sfw');
-                   MongoClient.connect(url, function(err, db) {
-               assert.equal(null, err);
+                console.log('sfw');
+                MongoClient.connect(url, function(err, db) {
+                    assert.equal(null, err);
                //console.log("Connected successfully to server");
-               db.collection('pics').insert({'name':result.url,'url':result.url})
+                    db.collection('pics').insert({'name':result.url,'url':result.url})
 
-               db.close();
+                    db.close();
+                    callback();
+                
                
-            });
-                  
-                  
-              }
+                });
+            }
+                
           },
           function(err) {
             // there was an error
               console.log(err);
+              callback();
           }
+           
         );
        
        
@@ -114,16 +117,20 @@ app.get('/',function(req, res){
 });
 
 app.post('/upload',upload.single('image'),function(req,res){
-    //console.log(req.file);
+    console.log('shitto');
     if(req.file===undefined){
         res.redirect('/');
-        res.end();  
+          
     }
     else{
-        updateDB(req.file); 
-    res.redirect('/');
+        console.log('wat');
+        updateDB(req.file,function(){
+            console.log('damn');
+            res.redirect('/');
+        }); 
+        console.log('ytho');
         
-    res.end();
+    
     }
     
     
@@ -161,7 +168,7 @@ app.get('/url',function(req,res){
            
               if(response.data.outputs[0].data.concepts[0].name==='nsfw'){
                   console.log('nsfw');
-                  res.redirect('/');
+                  //res.redirect('/');
                   
               }
               else{
@@ -169,10 +176,10 @@ app.get('/url',function(req,res){
                   MongoClient.connect(url, function(err, db) {
                assert.equal(null, err);
                //console.log("Connected successfully to server");
-               db.collection('pics').insert({'name':result.url,'url':result.url})
+               db.collection('pics').insert({'name':result.url,'url':result.url});
 
                db.close();
-               res.redirect('/');
+              // res.redirect('/');
                 res.end();
             });
                   
@@ -250,14 +257,28 @@ app.get('/admin', isAuthenticated, function(req,res){
         res.sendFile(__dirname+'/private/admin.html');
 });
 
-app.get('/delete', isAuthenticated, function(req,res){
-        cloudinary.api.delete_resources(['image1', 'image2'],
-    function(result){});
+app.get('/nuke', isAuthenticated, function(req,res){
+    cloudinary.api.resources(function(result) {
+        var imageList=[];
+        var x;
+        for(x=0;x<result.resources.length;x++){
+             imageList[x]=result.resources[x].public_id;
+        }
+           
+        
+        cloudinary.api.delete_resources(imageList,function(result2){
+            console.log(result2);
+        });
+    },
+    {max_results:100}); 
+    MongoClient.connect(url, function(err, db) {  
+        db.collection('pics').drop();
+        db.close();
+        
+    });
 });
 
-app.get('/retrieve', isAuthenticated, function(req,res){
-   cloudinary.api.resources(function(result)  { res.send(result)}); 
-});
+
 
 app.listen(process.env.PORT||500,function(){
   console.log('listening on :'+this.address().address+':'+this.address().port);
