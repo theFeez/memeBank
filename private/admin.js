@@ -1,5 +1,5 @@
 var loggedIn;
 
-$.get('/check',function(data){
-    
+$.get('/retrieve',function(data){
+  console.log(data);  
 })

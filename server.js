@@ -108,7 +108,7 @@ function isSFW(url){
 }
 
 app.get('/',function(req, res){
-   res.sendFile(__dirname+'/views/index.html');
+   res.sendFile(__dirname+'index.html');
     
     console.log('routed bitch');
 });
@@ -247,12 +247,16 @@ app.get('/login', function(req,res){
 app.get('/admin', isAuthenticated, function(req,res){
         
         console.log('admin');
-    res.sendFile(__dirname+'/private/admin.html');
+        res.sendFile(__dirname+'/private/admin.html');
 });
 
-app.get('/check',function(req,res){
-    console.log(req.loggedIn);
-   
+app.get('/delete', isAuthenticated, function(req,res){
+        cloudinary.api.delete_resources(['image1', 'image2'],
+    function(result){});
+});
+
+app.get('/retrieve', isAuthenticated, function(req,res){
+   cloudinary.api.resources(function(result)  { res.send(result)}); 
 });
 
 app.listen(process.env.PORT||500,function(){
