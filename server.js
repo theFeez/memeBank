@@ -21,6 +21,8 @@ app.use(session({
 //var auth=require('http-a1uth');
 
 var bodyParser=require('body-parser');
+
+
 cloudinary.config({ 
   cloud_name: 'hkqs3fahn', 
   api_key: '782969347656822', 
@@ -76,7 +78,7 @@ function updateDB(file,callback){
                 MongoClient.connect(url, function(err, db) {
                     assert.equal(null, err);
                //console.log("Connected successfully to server");
-                    db.collection('pics').insert({'name':result.url,'url':result.url})
+                    db.collection('pics').insert({'name':result.url,'url':result.url,'id':result.public_id})
 
                     db.close();
                     callback();
@@ -169,7 +171,7 @@ app.post('/url',function(req,res){
            
               if(response.data.outputs[0].data.concepts[0].name==='nsfw'){
                   console.log('nsfw');
-                  //res.redirect('/');
+                  //res.redirect('/');  
                   
               }
               else{
@@ -177,7 +179,7 @@ app.post('/url',function(req,res){
                   MongoClient.connect(url, function(err, db) {
                assert.equal(null, err);
                //console.log("Connected successfully to server");
-               db.collection('pics').insert({'name':result.url,'url':result.url});
+               db.collection('pics').insert({'name':result.url,'url':result.url,'id':result.public_id});
 
                db.close();
               // res.redirect('/');
@@ -277,6 +279,35 @@ app.get('/nuke', isAuthenticated, function(req,res){
         db.close();
         
     });
+});
+
+app.post('/deleteSelected', isAuthenticated, function(req,res){
+    var i =0;
+    var imageList = req.body;
+    console.log(imageList.ids.length);
+    //console.log(imageList);
+    /*for(var i in req.body.id){
+        imageList[i]=req.body.id[i];
+    }*/
+    console.log('image list: '+imageList.ids[0]);
+    
+    cloudinary.api.delete_resources(imageList,function(result2){
+        //console.log(result2);
+        
+        MongoClient.connect(url, function(err, db) {  
+        for(i=0;i<imageList.ids.length; i++){
+            console.log(imageList.ids[i]);
+            db.collection('pics').remove({'id':imageList.ids[i]});
+        }
+            console.log('deleted');
+        
+        db.close();
+        res.redirect('/admin');
+        });
+    });
+    
+    
+    
 });
 
 
