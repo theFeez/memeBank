@@ -40,15 +40,15 @@ cloudinary.config({
 var clarApp = new clarifai.App('LVTIKzCDiEEqMRd-Ql88PkXMzJmCnvqAfAk_Fn8B','1zSt2UIOKuYyudzcifHgX_b2DkGGyTfRqC_18Ls9');
 
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true,limit:'50mb'}));
+app.use(bodyParser.json({limit:'50mb'}));
 app.use(cors());
 //app.use(express.static(__dirname ));
 app.use(express.static(__dirname +'/views/'));
 
 var storage = multer.diskStorage({
   filename: function (req, file, cb) {
-      if(path.extname(file.originalname.toLowerCase())==='.jpg'||file.originalname.toLowerCase())==='.jpeg'||path.extname(file.originalname.toLowerCase())==='.gif'||path.extname(file.originalname.toLowerCase())==='.bmp'||path.extname(file.originalname.toLowerCase())==='.png')
+      if(path.extname(file.originalname.toLowerCase())==='.jpg'||path.extname(file.originalname.toLowerCase())==='.jpeg'||path.extname(file.originalname.toLowerCase())==='.gif'||path.extname(file.originalname.toLowerCase())==='.bmp'||path.extname(file.originalname.toLowerCase())==='.png')
           {
               cb(null, file.originalname)
           }
