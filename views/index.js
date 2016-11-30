@@ -10,10 +10,10 @@ function refreshPics(){
     console.log('ran it');
     $.get('/loadPics',function(data){
         
-        console.log(data);
-        for(var i in data){
-            console.log(data[i].url);
-            pics = pics+'<li><img src=\''+data[i].url+'\'</img></li>';
+        console.log(data.pics);
+        for(var i in data.pics){
+            console.log(data.pics[i].url);
+            pics = pics+'<li><img src=\''+data.pics[i].url+'\'</img></li>';
             
         }
         

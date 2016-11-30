@@ -139,6 +139,10 @@ app.post('/upload',upload.single('image'),function(req,res){
     
 });
 
+app.get('/text',function(req,res){
+    res.send('feezolini!');
+});
+
 app.get('/loadPics',function(req,res){
    // console.log('tried my best');
     
@@ -146,8 +150,8 @@ app.get('/loadPics',function(req,res){
         assert.equal(null, err);
         //console.log("Connected successfully to server");
         db.collection('pics').find().toArray(function(err, docs) {
-            res.send(docs);
-
+            res.send({'pics':docs});
+            console.log({'pics':docs});
             db.close();
         });
         
