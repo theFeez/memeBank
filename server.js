@@ -139,7 +139,7 @@ app.post('/upload',upload.single('image'),function(req,res){
     
 });
 
-app.get('/text',function(req,res){
+app.post('/text',function(req,res){
     res.send('feezolini!');
 });
 
