@@ -60,9 +60,10 @@ var upload = multer({storage})
 
 function updateDB(file,callback){
     
-   
+   console.log('updateDB');
+    console.log(file.path);
    cloudinary.uploader.upload(file.path, function(result){
-       //console.log(result);
+       console.log('cloudinary');
        clarApp.models.predict(Clarifai.NSFW_MODEL, result.url).then(
           function(response) {
             console.log('gucci');
@@ -121,6 +122,7 @@ app.get('/',function(req, res){
 app.post('/upload',upload.single('image'),function(req,res){
     console.log('shitto');
     if(req.file===undefined){
+        console.log(req.body);
         res.redirect('/');
           
     }
