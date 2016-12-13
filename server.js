@@ -152,8 +152,8 @@ app.get('/loadPics',function(req,res){
         assert.equal(null, err);
         //console.log("Connected successfully to server");
         db.collection('pics').find().toArray(function(err, docs) {
-            res.send({'pics':docs});
-            console.log({'pics':docs});
+            res.send(docs);
+            console.log(docs);
             db.close();
         });
         
