@@ -9,10 +9,10 @@ var nuke = function(){
 $.get('/loadPics',function(data){
     var pics='';
     console.log(data);
-    for(var i in data.pics){
+    for(var i in data){
         console.log(i);
-        console.log(data.pics[i].id);
-        pics = pics+'<li><input type=\'checkbox\' name=ids[] value='+data.pics[i].id+'><img src=\''+data.pics[i].url+'\'</img></li>';
+        console.log(data[i].id);
+        pics = pics+'<li><input type=\'checkbox\' name=ids[] value='+data[i].id+'><img src=\''+data[i].url+'\'</img></li>';
 
     }
 
