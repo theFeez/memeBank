@@ -153,7 +153,7 @@ app.get('/loadPics',function(req,res){
         //console.log("Connected successfully to server");
         db.collection('pics').find().toArray(function(err, docs) {
             res.send(docs);
-            console.log(docs);
+            
             db.close();
         });
         
