@@ -128,6 +128,7 @@ app.post('/upload',upload.single('image'),function(req,res){
     }
     else{
         console.log('wat');
+        console.log(req.body);
         updateDB(req.file,function(){
             console.log('damn');
             res.redirect('/');
