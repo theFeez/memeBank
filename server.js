@@ -122,13 +122,13 @@ app.get('/',function(req, res){
 app.post('/upload',upload.single('image'),function(req,res){
     console.log('shitto');
     if(req.file===undefined){
-        console.log(req.body);
+        console.log(req.file);
         res.redirect('/');
           
     }
     else{
         console.log('wat');
-        console.log(req.body);
+        console.log(req.file);
         updateDB(req.file,function(){
             console.log('damn');
             res.redirect('/');
