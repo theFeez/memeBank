@@ -66,7 +66,7 @@ function updateDB(file,callback){
        console.log('cloudinary');
        clarApp.models.predict(Clarifai.NSFW_MODEL, result.url).then(
           function(response) {
-            console.log('gucci');
+            console.log('success');
               console.log(response.data.outputs[0].data);
            
               if(response.data.outputs[0].data.concepts[0].name==='nsfw'){
@@ -116,24 +116,24 @@ function isSFW(url){
 app.get('/',function(req, res){
    res.sendFile(__dirname+'index.html');
     
-    console.log('routed bitch');
+    
 });
 
 app.post('/upload',upload.single('image'),function(req,res){
-    console.log('shitto');
+    console.log('uploading');
     if(req.file===undefined){
         console.log(req.file);
         res.redirect('/');
           
     }
     else{
-        console.log('wat');
+        
         console.log(req.file);
         updateDB(req.file,function(){
-            console.log('damn');
+            
             res.redirect('/');
         }); 
-        console.log('ytho');
+       
         
     
     }
@@ -169,11 +169,11 @@ app.post('/delete',function(req,res){
 app.post('/url',function(req,res){
     var image = req.body.imageURL
     console.log(req.body.imageURL); 
-    console.log('you fucked');
+    console.log('hitting /url');
     cloudinary.uploader.upload(image, function(result){
         clarApp.models.predict(Clarifai.NSFW_MODEL, result.url).then(
           function(response) {
-            console.log('gucci');
+            console.log('success');
               console.log(response.data.outputs[0].data.concepts);
            
               if(response.data.outputs[0].data.concepts[0].name==='nsfw'){
@@ -321,5 +321,5 @@ app.post('/deleteSelected', isAuthenticated, function(req,res){
 
 app.listen(process.env.PORT||500,function(){
   console.log('listening on :'+this.address().address+':'+this.address().port);
-    console.log('fuk heroku');
+    
 });
