@@ -14,18 +14,18 @@ function refreshPics(){
         var counter = 0;
         for(var i in data){
             console.log(data[i].url);
-            if(counter === 0){
-              pics += '<div class="row">';
+            if(counter == 0){
+              pics = pics + '<div class="row">';
             }
-            pics = pics+'<div class="col-md-4"><img src=\''+data[i].url+'\'class="img-responsive img-grid"> </img></div>';
-            if(counter === 2){
-              pics += '</div>';
+            pics = pics + '<div class="col-md-4"><img src=\''+data[i].url+'\'class="img-responsive img-grid"> </img></div>';
+            if(counter == 2){
+              pics = pics + '</div>';
               counter = 0;
             }
             counter++;
         }
         if(counter > 2){
-          pics += '</div>';
+          pics = pics + '</div>';
         }
         $('#picList').html(pics);
 
