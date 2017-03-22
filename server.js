@@ -79,7 +79,7 @@ function updateDB(file,callback){
                 MongoClient.connect(url, function(err, db) {
                     assert.equal(null, err);
                //console.log("Connected successfully to server");
-                    db.collection('pics').insert({'name':result.url,'url':result.url,'id':result.public_id})
+                    db.collection('pics').insert({'name':file.filename,'url':result.url,'id':result.public_id})
 
                     db.close();
                     callback();
