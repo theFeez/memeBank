@@ -16,7 +16,7 @@ function refreshPics(){
               pics = pics + '<div class="row">';
             }
 
-            pics = pics + '<div class="col-md-2 col-xs-6 col-sm-4"><a href="'+ data[i].url + '" target="_blank"><img src=\''+data[i].url+'\'class="img-responsive img-grid img-thumbnail"> </img></a></div>';
+            pics = pics + '<a href="'+ data[i].url + '" target="_blank"><div class="col-md-2 col-xs-6 col-sm-4" style="background-image: url('+ data[i].url +');background-repeat: no-repeat; background-size: contain; height: 200px; padding-bottom: 20px;"></div></a>';
 
             if(counter == 5){
               pics = pics + '</div>';
