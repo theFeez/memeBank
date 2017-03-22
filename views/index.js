@@ -17,7 +17,7 @@ function refreshPics(){
             if(counter === 0){
               pics += '<div class="row">';
             }
-            pics = pics+'<div class="col-md-4"><img src=\''+data[i].url+'\'class="img-responsive img-grid" </img></div>';
+            pics = pics+'<div class="col-md-4"><img src=\''+data[i].url+'\'class="img-responsive img-grid"> </img></div>';
             if(counter === 3){
               pics += '</div>';
               counter = 0;
