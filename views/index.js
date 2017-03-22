@@ -15,7 +15,7 @@ function refreshPics(){
         for(var i in data){
             console.log(data[i].url);
             if(counter === 0){
-              pics += '<div class="row"';
+              pics += '<div class="row">';
             }
             pics = pics+'<div class="col-md-4"><img src=\''+data[i].url+'\'class="img-responsive img-grid" </img></div>';
             if(counter === 3){
