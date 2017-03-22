@@ -16,9 +16,9 @@ function refreshPics(){
               pics = pics + '<div class="row">';
             }
 
-            pics = pics + '<div class="col-md-4 col-xs-12 col-sm-6"><img src=\''+data[i].url+'\'class="img-responsive img-grid img-thumbnail"> </img></div>';
+            pics = pics + '<div class="col-md-2 col-xs-6 col-sm-4"><a href="'+ data[i].url + '" target="_blank"><img src=\''+data[i].url+'\'class="img-responsive img-grid img-thumbnail"> </img></a></div>';
 
-            if(counter == 2){
+            if(counter == 5){
               pics = pics + '</div>';
               counter = 0;
             }
@@ -26,7 +26,7 @@ function refreshPics(){
               counter++;
             }
         }
-        if(counter > 2){
+        if(counter > 5){
           pics = pics + '</div>';
         }
         $('#picList').html(pics);
