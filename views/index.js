@@ -16,7 +16,7 @@ function refreshPics(){
               pics = pics + '<div class="row">';
             }
 
-            pics = pics + '<div class="col-md-4 col-xs-12 col-sm-6"><img src=\''+data[i].url+'\'class="img-responsive img-grid"> </img></div>';
+            pics = pics + '<div class="col-md-4 col-xs-12 col-sm-6"><img src=\''+data[i].url+'\'class="img-responsive img-grid img-thumbnail"> </img></div>';
 
             if(counter == 2){
               pics = pics + '</div>';
@@ -60,7 +60,26 @@ function refreshPics(){
         });
     };
 
+    var inputs = document.querySelectorAll( '.inputfile' );
+    Array.prototype.forEach.call( inputs, function( input )
+    {
+    	var label	 = input.nextElementSibling,
+    		labelVal = label.innerHTML;
 
+    	input.addEventListener( 'change', function( e )
+    	{
+    		var fileName = '';
+    		if( this.files && this.files.length > 1 )
+    			fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+    		else
+    			fileName = e.target.value.split( '\\' ).pop();
+
+    		if( fileName )
+    			label.querySelector( 'span' ).innerHTML = fileName;
+    		else
+    			label.innerHTML = labelVal;
+    	});
+    });
 
 
 
