@@ -18,13 +18,13 @@ function refreshPics(){
               pics += '<div class="row">';
             }
             pics = pics+'<div class="col-md-4"><img src=\''+data[i].url+'\'class="img-responsive img-grid"> </img></div>';
-            if(counter === 3){
+            if(counter === 2){
               pics += '</div>';
               counter = 0;
             }
             counter++;
         }
-        if(counter > 3){
+        if(counter > 2){
           pics += '</div>';
         }
         $('#picList').html(pics);
