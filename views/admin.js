@@ -14,7 +14,7 @@ $.get('/loadPics',function(data){
           pics = pics + '<div class="row">';
         }
 
-        pics = pics + '<input type=\'checkbox\' name=ids[] value='+data[i].id+'><div class="col-md-2 col-xs-6 col-sm-4 img-thumbnail" style="background-image: url('+ data[i].url +');background-repeat: no-repeat; background-position: center; background-size: cover; height: 200px;"></div>';
+        pics = pics + '<div class="col-md-2 col-xs-6 col-sm-4 img-thumbnail" style="background-image: url('+ data[i].url +');background-repeat: no-repeat; background-position: center; background-size: cover; height: 200px;"> <input type=\'checkbox\' name=ids[] value='+data[i].id+'> </div>';
 
         if(counter == 5){
           pics = pics + '</div>';
