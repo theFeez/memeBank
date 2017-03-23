@@ -1,4 +1,5 @@
 var loggedIn;
+var pics='';
 var nuke = function(){
     $.get('/nuke',function(data){
         console.log(data);
