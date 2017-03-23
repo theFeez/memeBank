@@ -7,3 +7,7 @@ body{
 .grid-container{
   margin-top: 20px;
 }
+
+.input-group .form-control {
+  width: 75%;
+}
