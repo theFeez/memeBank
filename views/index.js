@@ -9,7 +9,6 @@ var login;
 function refreshPics(){
     $.get('/loadPics',function(data){
 
-        console.log(data);
         var counter = 0;
         for(var i in data){
             if(counter == 0){
