@@ -14,7 +14,7 @@ $.get('/loadPics',function(data){
           pics = pics + '<div class="row">';
         }
 
-        pics = pics + '<a href="'+ data[i].url + '" target="_blank"><div class="col-md-2 col-xs-6 col-sm-4 img-thumbnail" style="background-image: url('+ data[i].url +');background-repeat: no-repeat; background-position: center; background-size: cover; height: 200px;"></div></a>';
+        pics = pics + '<input type=\'checkbox\' name=ids[] value='+data[i].id+'><div class="col-md-2 col-xs-6 col-sm-4 img-thumbnail" style="background-image: url('+ data[i].url +');background-repeat: no-repeat; background-position: center; background-size: cover; height: 200px;"></div>';
 
         if(counter == 5){
           pics = pics + '</div>';
@@ -28,5 +28,8 @@ $.get('/loadPics',function(data){
       pics = pics + '</div>';
     }
     $('#picList').html(pics);
+
+
+
 
 });
