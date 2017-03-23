@@ -261,6 +261,12 @@ app.post('/login', function(req,res){
     });
 });
 
+app.get('/logout',function(req,res){
+    sess = req.session;
+    sess.user = null;
+    res.redirect('/');
+})
+
 app.get('/admin', isAuthenticated, function(req,res){
         
         console.log('admin');

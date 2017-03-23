@@ -5,6 +5,12 @@ var nuke = function(){
     })
 }
 
+var logout=function(){
+    $.get('/logout',function(data){
+        
+    })
+}
+
 
 $.get('/loadPics',function(data){
     var pics='';
